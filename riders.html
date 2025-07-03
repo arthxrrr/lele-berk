@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> pilotos de berk - lele!</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;600&display=swap');
+    .font-title {
+      font-family: 'Merriweather', serif;
+    }
+    .font-text {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-indigo-900 via-purple-700 to-pink-400 text-white min-h-screen flex flex-col items-center p-4">
+  <nav class="w-full bg-gradient-to-r from-purple-800 via-pink-700 to-purple-800 bg-opacity-90 shadow-lg fixed top-0 z-50">
+  <div class="max-w-4xl mx-auto px-6 py-5 flex justify-center">
+    <a href="index.html" class="text-yellow-200 font-text text-lg md:text-xl font-semibold hover:text-yellow-100 transition duration-200">
+      voltar ao início ↩
+    </a>
+  </div>
+</nav>
+
+ <header class="w-full max-w-3xl text-center mb-8 mt-32">
+  <h1 class="text-4xl font-title mb-2">pilotos de berk</h1>
+  <p class="font-text text-yellow-100">escolha um episódio para assistir</p>
+</header>
+
+  <div class="w-full max-w-3xl bg-black rounded-lg shadow-lg mb-8">
+    <video id="player" controls class="w-full rounded-lg" src="https://archive.org/download/riders-ep-15/riders%20ep1.mp4" type="video/mp4"></video>
+  </div>
+
+  <section class="w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 gap-4 font-text">
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep1.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 1</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep2.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 2</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep3.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 3</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep4.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 4</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep5.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 5</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep6.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 6</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep7.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 7</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep8.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 8</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep9.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 9</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep10.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 10</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep11.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 11</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep12.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 12</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep13.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 13</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep14.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 14</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep15.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 15</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep16.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 16</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep17.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 17</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep18.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 18</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep19.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 19</button>
+  <button onclick="trocarEpisodio('https://archive.org/download/riders-ep-15/riders%20ep20.mp4')" class="bg-pink-600 hover:bg-pink-700 rounded-lg py-3 font-semibold shadow-md transition hover:scale-105">episódio 20</button>
+</section>
+
+
+
+  <script>
+    function trocarEpisodio(caminho) {
+  const player = document.getElementById('player');
+  player.style.opacity = 0.3;
+  player.src = caminho;
+  player.oncanplay = () => {
+    player.style.opacity = 1;
+    player.play();
+  };
+}
+  </script>
+
+</body>
+</html>
