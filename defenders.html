@@ -2,36 +2,388 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>defensores de berk - para lele!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pilotos de Berk - 2ª Temporada</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;600&display=swap');
-
-    .font-title {
-      font-family: 'Merriweather', serif;
+    :root {
+      --primary-color: #4a044e;
+      --secondary-color: #1a1a2e;
+      --accent-color: #f472b6;
+      --text-color: #ffffff;
+      --bg-color: #0f0f1a;
     }
-    .font-text {
-      font-family: 'Poppins', sans-serif;
+    
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    
+    .nav-dragon {
+      background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+    
+    .video-container {
+      position: relative;
+      background: var(--secondary-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .video-container video {
+      width: 100%;
+      height: auto;
+      min-height: 300px;
+      background: #000;
+    }
+    
+    .dragon-scroll {
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary-color) var(--secondary-color);
+    }
+    
+    .dragon-scroll::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    .dragon-scroll::-webkit-scrollbar-track {
+      background: var(--secondary-color);
+      border-radius: 10px;
+    }
+    
+    .dragon-scroll::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 10px;
+    }
+    
+    .episode-btn {
+      background: rgba(45, 55, 72, 0.7);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .episode-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: all 0.5s;
+    }
+    
+    .episode-btn:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    }
+    
+    .episode-btn:hover::before {
+      left: 100%;
+    }
+    
+    .episode-btn.watched {
+      background: var(--primary-color);
+      border-color: var(--accent-color);
+    }
+    
+    .episode-btn.watched::after {
+      content: "✓";
+      position: absolute;
+      top: 2px;
+      right: 5px;
+      color: var(--accent-color);
+      font-size: 12px;
+      font-weight: bold;
+    }
+    
+    .loading-spinner {
+      animation: spin 1s linear infinite;
+      border-top-color: var(--accent-color);
+      border-bottom-color: var(--primary-color);
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .player-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background: rgba(26, 26, 46, 0.9);
+      border-radius: 0 0 12px 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-btn {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #6b046f 100%);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .nav-btn:active {
+      transform: translateY(0);
+    }
+    
+    .nav-btn i {
+      margin: 0 5px;
+    }
+    
+    .current-episode {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent-color);
+    }
+    
+    .footer-text {
+      text-shadow: 0 0 8px rgba(244, 114, 182, 0.5);
+    }
+    
+    /* Efeito de brilho nos botões */
+    .nav-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.1) 45%,
+        rgba(255, 255, 255, 0) 60%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: rotate(30deg);
+      transition: all 0.5s;
+    }
+    
+    .nav-btn:hover::after {
+      left: 100%;
+      top: 100%;
     }
   </style>
 </head>
-<body class="bg-gradient-to-b from-indigo-900 via-purple-700 to-pink-400 text-white min-h-screen flex flex-col items-center justify-center px-4 text-center">
+<body class="flex flex-col items-center p-4">
+  <nav class="w-full nav-dragon fixed top-0 z-50 py-3">
+    <div class="max-w-6xl mx-auto px-4 flex justify-center">
+      <a href="index.html" class="text-white font-medium flex items-center hover:text-pink-300 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+        </svg>
+        Voltar
+      </a>
+    </div>
+  </nav>
 
-  <nav class="w-full bg-gradient-to-r from-purple-800 via-pink-700 to-purple-800 bg-opacity-90 shadow-lg fixed top-0 z-50">
-  <div class="max-w-4xl mx-auto px-6 py-4 flex justify-center">
-    <a href="index.html" class="text-yellow-200 font-text text-lg md:text-xl font-semibold hover:text-yellow-100 transition duration-200">
-      voltar ao início ↩
-    </a>
-  </div>
-</nav>
-
-  <main class="mt-24 text-center">
-    <h1 class="text-4xl md:text-5xl font-title text-pink-200 mb-6">defensores de berk </h1>
-    <p class="text-xl md:text-2xl font-text text-yellow-100 max-w-xl mx-auto">
-      episódios em fase de providenciamento! ⚠⚠
-    </p>
+  <main class="w-full max-w-4xl mt-20">
+    <div class="video-container mb-8 animate__animated animate__fadeIn">
+      <div id="player-wrapper">
+        <video id="player" controls class="w-full">
+          <source src="https://archive.org/download/drgnst-02-ep-04/DRGNST02EP01.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="player-controls">
+        <button id="prev-episode" class="nav-btn">
+          <i class="fas fa-chevron-left"></i> Anterior
+        </button>
+        <span id="current-episode" class="current-episode">Episódio 01</span>
+        <button id="next-episode" class="nav-btn">
+          Próximo <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 dragon-scroll max-h-[60vh] overflow-y-auto p-2">
+      <script>
+        for (let i = 1; i <= 20; i++) {
+          const epNumber = i < 10 ? `0${i}` : i;
+          const watchedClass = localStorage.getItem(`episode_${epNumber}_watched`) ? 'watched' : '';
+          document.write(
+            `<button onclick="trocarEpisodio('https://archive.org/download/drgnst-02-ep-04/DRGNST02EP${epNumber}.mp4', ${i})" 
+              class="episode-btn rounded-lg py-3 px-2 font-medium text-center ${watchedClass}"
+              id="ep-btn-${i}">
+              Episódio ${epNumber}
+            </button>`
+          );
+        }
+      </script>
+    </div>
   </main>
 
+  <footer class="mt-12 py-6 text-center text-pink-300 text-sm w-full footer-text">
+    <p>meu bebezão! 💜</p>
+  </footer>
+
+  <script>
+    let currentEpisode = 1;
+    const totalEpisodes = 20;
+    
+    function trocarEpisodio(caminho, epNumber) {
+      currentEpisode = epNumber || 1;
+      const player = document.getElementById('player');
+      const container = document.getElementById('player-wrapper');
+      
+      // atualiza o ep atual
+      updateCurrentEpisodeDisplay();
+      
+      // bolinha girando enquanto carrega
+      container.innerHTML = `
+        <div class="w-full h-full flex items-center justify-center" style="min-height: 300px;">
+          <div class="loading-spinner rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+        </div>
+      `;
+
+      // simula carregamento 
+      setTimeout(() => {
+        container.innerHTML = `
+          <video id="player" controls class="w-full">
+            <source src="${caminho}" type="video/mp4">
+          </video>
+        `;
+        
+        // restaurar o progresso salvo se for o mesmo vídeo
+        const savedVideo = localStorage.getItem('currentVideo');
+        const savedTime = localStorage.getItem('videoProgress');
+        
+        if (savedVideo === caminho && savedTime) {
+          document.getElementById('player').currentTime = parseFloat(savedTime);
+        }
+
+        setupPlayer();
+      }, 800);
+    }
+
+    function updateCurrentEpisodeDisplay() {
+      const epDisplay = currentEpisode < 10 ? `0${currentEpisode}` : currentEpisode;
+      document.getElementById('current-episode').textContent = `Episódio ${epDisplay}`;
+    }
+
+    function setupPlayer() {
+      const player = document.getElementById('player');
+      
+      if (!player) return;
+
+      player.addEventListener('timeupdate', function() {
+        localStorage.setItem('videoProgress', player.currentTime);
+        localStorage.setItem('currentVideo', player.src);
+        
+        // marcar como assistido, 08 = 80% do vídeo visto
+        if (player.duration && (player.currentTime / player.duration) > 0.8) {
+          markEpisodeAsWatched(currentEpisode);
+        }
+      });
+
+      player.addEventListener('play', function() {
+        const container = player.parentElement;
+        container.classList.add('animate__animated', 'animate__pulse');
+        setTimeout(() => {
+          container.classList.remove('animate__animated', 'animate__pulse');
+        }, 1000);
+      });
+      
+      player.addEventListener('ended', function() {
+        markEpisodeAsWatched(currentEpisode);
+        // auto play
+        if (currentEpisode < totalEpisodes) {
+          setTimeout(() => {
+            playNextEpisode();
+          }, 2000);
+        }
+      });
+    }
+
+    function markEpisodeAsWatched(epNumber) {
+      const epDisplay = epNumber < 10 ? `0${epNumber}` : epNumber;
+      localStorage.setItem(`episode_${epDisplay}_watched`, 'true');
+      const btn = document.getElementById(`ep-btn-${epNumber}`);
+      if (btn) btn.classList.add('watched');
+    }
+
+    function playNextEpisode() {
+      if (currentEpisode < totalEpisodes) {
+        currentEpisode++;
+        const epNumber = currentEpisode < 10 ? `0${currentEpisode}` : currentEpisode;
+        trocarEpisodio(`https://archive.org/download/drgnst-02-ep-04/DRGNST02EP${epNumber}.mp4`, currentEpisode);
+      }
+    }
+
+    function playPrevEpisode() {
+      if (currentEpisode > 1) {
+        currentEpisode--;
+        const epNumber = currentEpisode < 10 ? `0${currentEpisode}` : currentEpisode;
+        trocarEpisodio(`https://archive.org/download/drgnst-02-ep-04/DRGNST02EP${epNumber}.mp4`, currentEpisode);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      setupPlayer();
+      
+      // botões
+      document.getElementById('next-episode').addEventListener('click', playNextEpisode);
+      document.getElementById('prev-episode').addEventListener('click', playPrevEpisode);
+      
+      //  atalhos 
+      document.addEventListener('keydown', function(e) {
+        // prox ep
+        if (e.key === 'ArrowRight') {
+          playNextEpisode();
+        } 
+        // ep anterior
+        else if (e.key === 'ArrowLeft') {
+          playPrevEpisode();
+        }
+        // play/pause
+        else if (e.key === ' ') {
+          const player = document.getElementById('player');
+          if (player) {
+            if (player.paused) player.play();
+            else player.pause();
+            e.preventDefault();
+          }
+        }
+      });
+      
+      // verifica o local storage
+      const savedVideo = localStorage.getItem('currentVideo');
+      const savedTime = localStorage.getItem('videoProgress');
+      if (savedVideo && savedVideo.includes('DRGNST02EP01') && savedTime) {
+        document.getElementById('player').currentTime = parseFloat(savedTime);
+      }
+    });
+  </script>
 </body>
 </html>

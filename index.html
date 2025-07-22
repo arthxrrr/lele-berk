@@ -5,35 +5,129 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>para lele!</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;600&display=swap');
-    .font-title {
-      font-family: 'Merriweather', serif;
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Dancing+Script:wght@700&display=swap');
+    
+    :root {
+      --dragon-purple: #6C2D9A;
+      --romantic-pink: #E83F8E;
+      --gold-accent: #F9C74F;
+      --dark-bg: #1a0933;
     }
-    .font-text {
-      font-family: 'Poppins', sans-serif;
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, var(--dark-bg) 0%, #3b0764 50%, #7e22ce 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: #fff;
+    }
+    
+    .font-love {
+      font-family: 'Dancing Script', cursive;
+    }
+    
+    .header-container {
+      width: 100%;
+      max-width: 1600px;
+      height: 256px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    
+    .header-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    
+    .btn-dragon {
+      background: linear-gradient(145deg, var(--romantic-pink), var(--dragon-purple));
+      box-shadow: 0 4px 20px rgba(110, 36, 170, 0.6);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid var(--gold-accent);
+      color: white;
+    }
+    
+    .btn-dragon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(110, 36, 170, 0.8);
+      color: white;
+    }
+    
+    .heart-beat {
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    .content-box {
+      background: rgba(39, 11, 77, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(249, 199, 79, 0.3);
+    }
+    
+    .text-gold {
+      color: var(--gold-accent);
+    }
+    
+    @media (max-width: 640px) {
+      .header-container {
+        height: 256px; 
+        border-radius: 0;
+      }
+      
+      .header-image {
+        object-position: center 30%; 
+      }
     }
   </style>
- </head>
- <body class="bg-gradient-to-b from-indigo-900 via-purple-700 to-pink-400 text-white min-h-screen flex flex-col items-center">
-  <header class="w-full h-64 relative">
-    <img src="lele.png" alt="Banner com sua namorada e dragões" class="w-full h-full object-cover opacity-80 rounded-b-3xl shadow-lg" />
-    <div class="absolute inset-0 flex items-center justify-center">
+</head>
+<body class="flex flex-col items-center">
+  <div class="w-full">
+    <div class="header-container">
+      <img src="lele.png" alt="Lelê montada em dragão" class="header-image" />
     </div>
-  </header>
-  <BR>
-   <h1 class="text-4xl md:text-6xl font-title text-pink-200 drop-shadow-lg text-center px-4">
-   para lele! a princesa dos dragões🐉</h1>
-  <section class="text-center mt-6 px-4">
-  <p class="text-xl md:text-2xl font-text text-yellow-100">e o amor da minha vida!!💌</p>
-  </section>
+    
+    <div class="w-full text-center py-6 bg-gradient-to-b from-purple-900/80 to-transparent">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-200">para lele! a princesa dos dragões</span>
+    <span class="text-yellow-300">🐉</span>
+  </h1>
+  <div class="heart-beat text-3xl mb-2">💖</div>
+  <p class="font-love text-xl md:text-2xl text-gold">e o amor da minha vida!</p>
+</div>
+    </div>
+  </div>
 
-  <section class="flex flex-col md:flex-row gap-6 mt-10 mb-16 px-4">
-    <a href="riders.html" class="bg-pink-600 hover:bg-pink-700 text-white font-text font-semibold py-4 px-8 rounded-2xl shadow-lg text-xl text-center 
-    w-full md:w-64 transition transform hover:scale-105">pilotos de berk</a>
-    <a href="defenders.html" class="bg-purple-600 hover:bg-purple-700 text-white font-text font-semibold py-4 px-8 
-    rounded-2xl shadow-lg text-xl text-center w-full md:w-64 transition transform hover:scale-105">defensores de berk</a>
-  </section>
+  <main class="w-full max-w-4xl px-4 py-12 flex flex-col items-center">
+    <div class="content-box rounded-2xl p-8 w-full text-center">
+      <p class="text-lg md:text-xl mb-8 text-white">clique abaixo para assistir as duas temporadas!</p>
+      
+      <div class="flex flex-col md:flex-row gap-6 justify-center">
+        <a href="riders.html" class="btn-dragon font-semibold py-4 px-8 rounded-xl text-lg text-center w-full md:w-64">
+          Pilotos de Berk
+        </a>
+        <a href="defenders.html" class="btn-dragon font-semibold py-4 px-8 rounded-xl text-lg text-center w-full md:w-64">
+          Defensores de Berk
+        </a>
+      </div>
+    </div>
+  </main>
 
+  <footer class="mt-auto py-6 text-center text-pink-200 text-sm w-full">
+    <p>arthur e leleee 💖💖💖💖💖 </p>
+  </footer>
 </body>
 </html>
